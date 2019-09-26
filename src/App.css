@@ -1,22 +1,43 @@
+html,
+body {
+  height: 100%;
+  background-color: #1a2849;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.Title {
+  color: #FFFFFF;
+  font-size: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.TextInput {
+  height: 300px;
+  width: 80%;
+  border: 5px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #e5e5e5;
+  padding: 20px;
+  overflow: scroll;
 }
 
-.App-link {
-  color: #09d3ac;
+.InputText {
+  font-size: 18px;
+}
+
+.Actions {
+  padding: 10px;
+}
+
+.ActionButton {
+  color: #FFFFFF;
+  font-size: 1em;
+  background: #1089ff;
+  border: 2px;
+  border-color: #FFFFFF80;
+  border-style: solid;
+  border-radius: 5px;
 }
