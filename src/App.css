@@ -33,9 +33,9 @@ body {
 }
 
 .ActionButton {
-  color: #FFFFFF;
+  color: black;
   font-size: 1em;
-  background: #1089ff;
+  background: #4fa4fa;
   border: 2px;
   border-color: #FFFFFF80;
   border-style: solid;

@@ -14,6 +14,11 @@ class App extends React.Component {
     this._textInputHandler2 = this._textInputHandler2.bind(this);
   }
 
+  _selectChangeHandler(e) {
+    this.setState({ convertTo: e.target.value });
+    this._clear();
+  }
+
   _textInputHandler1(e) {
     this.setState({ textInput1: e.target.value });
   }
@@ -52,7 +57,7 @@ class App extends React.Component {
       let csvData = data.slice(1).map(line => line.split(","));
       json = csvData.map(row => {
         let tmp = {};
-        row.map((value, index) => {
+        row.forEach((value, index) => {
           tmp[columnName[index]] = value.trim().replace(/["]/g, "");
         });
         return tmp;
@@ -63,7 +68,22 @@ class App extends React.Component {
 
   _convertJSONToCSV(json) {
     // TODO Convert CSV to JSON
-    console.log("Convert JSON to CSV");
+    try {
+      json = JSON.parse(json);
+      let keys = Object.keys(json[0]);
+      let values = json.map(n => {
+        return Object.values(n).join(",");
+      });
+      keys = keys.join(",");
+      values = values.reduce((p, c) => {
+        return p + "\n" + c;
+      });
+      this.setState({ textInput2: keys + values });
+    } catch (exception) {
+      if (exception.name === "SyntaxError") {
+        alert("Invalid JSON");
+      }
+    }
   }
 
   _IsValidCSV() {
@@ -85,6 +105,13 @@ class App extends React.Component {
           onChange={this._textInputHandler1}
         />
         <div className="Actions">
+          <select
+            className="ActionButton Select"
+            onChange={this._selectChangeHandler.bind(this)}
+          >
+            <option value="JSON">CSV2JSON</option>
+            <option value="CSV">JSON2CSV</option>
+          </select>
           <button
             className="ActionButton"
             id="convert"
